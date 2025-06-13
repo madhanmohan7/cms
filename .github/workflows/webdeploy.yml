@@ -3,8 +3,8 @@ name: Deploy CMS Website to GitHub Pages
 on:
   push:
     branches:
-      - main   
-      
+      - main
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,15 +25,58 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web --release --base-href "/cms/"
 
-      - name: Move build/web/assets/assets/* to build/web/assets/ and clean up
+      - name: Clean and Move to webbuild/
         run: |
-          mv build/web/assets/assets/* build/web/assets/
-          rm -rf build/web/assets/assets/
+          rm -rf webbuild
+          mkdir webbuild
+          mv build/web/* webbuild/
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
-          publish_branch: gh-pages
-          force_orphan: true
+      - name: Commit and Push webbuild folder
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add webbuild
+          git commit -m "Update webbuild for GitHub Pages" || echo "No changes to commit"
+          git push origin main
+
+
+
+# name: Deploy CMS Website to GitHub Pages
+
+# on:
+#   push:
+#     branches:
+#       - main   
+      
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+
+#       - name: Setup Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: '3.29.2'
+#           channel: stable
+
+#       - name: Install Dependencies
+#         run: flutter pub get
+
+#       - name: Build Flutter Web
+#         run: flutter build web --release --base-href "/cms/"
+
+#       - name: Move build/web/assets/assets/* to build/web/assets/ and clean up
+#         run: |
+#           mv build/web/assets/assets/* build/web/assets/
+#           rm -rf build/web/assets/assets/
+
+#       - name: Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v4
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: build/web
+#           publish_branch: gh-pages
+#           force_orphan: true
