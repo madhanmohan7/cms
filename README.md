@@ -1,9 +1,9 @@
 <h1 align="left">
-  <img src="assets/icons/ev-leaf.svg" alt="EV Leaf Logo" width="40" style="vertical-align: middle; margin-right: 10px;" />
+  <img src="assets/icons/ev_leaf.svg" alt="EV Leaf Logo" width="40" style="vertical-align: middle; margin-right: 10px;" />
   ECO (EV Charger Operations) Web Portal
 </h1>
 
-![Eco Banner](assets/images/bg1.png)
+![Eco Banner](assets/images/bg1.jpg)
 
 Welcome to **Eco**, a powerful web portal built to manage, monitor, and optimize Electric Vehicle (EV) charging operations. Whether you're an admin, operator, or station owner, Eco provides a comprehensive interface to streamline EV charger networks efficiently.
 
