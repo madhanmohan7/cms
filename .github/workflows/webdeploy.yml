@@ -1,4 +1,4 @@
-name: Deploy CMS Website to GitHub Pages
+name: Deploy CMS Website to GitHub Pages Actions
 
 on:
   push:
